@@ -1,4 +1,4 @@
-- 👋 Hi, my name is Sergei
+- Hi, my name is Sergei
 - Interested in Python
 - Currently learning: Pytest
 
