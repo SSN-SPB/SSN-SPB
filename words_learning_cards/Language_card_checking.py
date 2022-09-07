@@ -2,25 +2,14 @@
 import random
 import sys
 
-VERSION = 'The current version is 2022042701'
-HELP_INSTRUCTION = 'The redundant message is removed if z is selected'
-
-
-def version_help():
-    for x in sys.argv:
-        if x == '-v' or x == '--version':
-            print(VERSION)
-        elif x == '-h' or x == '--help':
-            print(HELP_INSTRACTION)
-
 
 word_pairs = []
 r2e = {}
 english_words = []
 russian_words = []
-MAXIMAL_NUMBER = 2
 valid_selection = True
-
+VERSION = 'The current version is 2022090701'
+CHANGED = 'The two previous random values are not suggested to check'
 
 def input_validating(checked_words, translation_words):
     while True:
@@ -30,7 +19,7 @@ def input_validating(checked_words, translation_words):
             if row_input == 'z':
                 return row_input
             selected_number = int(row_input)
-            print('Your choice: {}'.format(translation_words[selected_number]))
+            print('Your choice {}'.format(translation_words[selected_number]))
             selected_word = checked_words[selected_number]
         except (ValueError, ArithmeticError, IndexError):
             print('''
@@ -54,26 +43,25 @@ def validating_selection(source, translation):
     c = 0
     random_source = ''
     selected_word = ''
-    initial_selection = ''
+    list_of_selected = [source[0], source[1]]
     while random_source == selected_word:
         source_list, translation_list = sort_list_randomly(source, translation)
         if c > 0:
-            print('Correct! \nTry the next one:')
-            print('The previous selection is {}'.format(initial_selection))
-        # select random word that is not equal to previous
+            print('Correct! Try the next one:')
+        # select random word that is not equal to 2 previous
         while True:
             random_source = random.choice(source_list)
-            if random_source != initial_selection:
+            if random_source not in list_of_selected:
                 break
-        initial_selection = random_source
+        list_of_selected.pop(0)
+        list_of_selected.append(random_source)
         c = c + 1
-        # print('The previous selection is {}'.format(initial_selection)
         print('''
-Select number that corresponds to
-the correct translation of
+Select number that corresponds to 
+the correct translation of:
 {}
 from list below or select z to quit
-'''.format(random_source))
+        '''.format(random_source))
         for r in translation_list:
             print('{}: {}'.format(translation_list.index(r), r.rstrip("\n")))
         # checking input till it is valid
@@ -87,9 +75,7 @@ from list below or select z to quit
               'corresponds to word {}'.format(selected_word))
     return selected_word
 
-
 def main():
-    version_help()
     # print("Open file with Engish words")
     checked_file = open("words.txt", encoding='utf-8', mode='r')
     # create list of lines from file
@@ -129,5 +115,4 @@ def main():
     exit()
 
 
-if __name__ == "__main__":
-    main()
+if __name__ == "__main__": main()
