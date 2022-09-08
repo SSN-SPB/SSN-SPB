@@ -12,16 +12,14 @@ VERSION = 'The current version is 2022090701'
 CHANGED = 'The two previous random values are not suggested to check'
 
 
-def input_validating(checked_words, translation_words):
+def input_validating(translation_words):
     while True:
-        selected_number = 0
         try:
             row_input = input('Input Your selection here: ')
             if row_input == 'z':
                 return row_input
             selected_number = int(row_input)
             print('Your choice {}'.format(translation_words[selected_number]))
-            selected_word = checked_words[selected_number]
         except (ValueError, ArithmeticError, IndexError):
             print('''
             It is not correct number.'
@@ -44,6 +42,7 @@ def validating_selection(source, translation):
     c = 0
     random_source = ''
     selected_word = ''
+    selected_number = 0
     list_of_selected = [source[0], source[1]]
     while random_source == selected_word:
         source_list, translation_list = sort_list_randomly(source, translation)
@@ -66,7 +65,7 @@ from list below or select z to quit
         for r in translation_list:
             print('{}: {}'.format(translation_list.index(r), r.rstrip("\n")))
         # checking input till it is valid
-        selected_number = input_validating(source_list, translation_list)
+        selected_number = input_validating(translation_list)
         if selected_number != 'z':
             selected_word = source_list[selected_number]
         else:
@@ -78,7 +77,7 @@ from list below or select z to quit
 
 
 def main():
-    # print("Open file with Engish words")
+    # print("Open file with English words")
     checked_file = open("words.txt", encoding='utf-8', mode='r')
     # create list of lines from file
     lines = checked_file.readlines()
@@ -100,15 +99,15 @@ def main():
     ans = True
     while ans:
         print("""
-        1.Check engish-russian translation
-        2.Check russian-english translation
+        1.Check English-Russian translation
+        2.Check Russian-English translation
         3.Exit/Quit
         """)
         ans = input('Input Your choice here: ')
         if ans == "1":
-            selection = validating_selection(english_words, russian_words)
+            validating_selection(english_words, russian_words)
         elif ans == "2":
-            selection = validating_selection(russian_words, english_words)
+            validating_selection(russian_words, english_words)
         elif ans == "3":
             print("\n Goodbye")
             ans = None
