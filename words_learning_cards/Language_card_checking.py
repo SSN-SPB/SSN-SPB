@@ -11,6 +11,7 @@ valid_selection = True
 VERSION = 'The current version is 2022090701'
 CHANGED = 'The two previous random values are not suggested to check'
 
+
 def input_validating(checked_words, translation_words):
     while True:
         selected_number = 0
@@ -57,7 +58,7 @@ def validating_selection(source, translation):
         list_of_selected.append(random_source)
         c = c + 1
         print('''
-Select number that corresponds to 
+Select number that corresponds to
 the correct translation of:
 {}
 from list below or select z to quit
@@ -74,6 +75,7 @@ from list below or select z to quit
         print('Wrong. Your choice '
               'corresponds to word {}'.format(selected_word))
     return selected_word
+
 
 def main():
     # print("Open file with Engish words")
@@ -115,4 +117,5 @@ def main():
     exit()
 
 
-if __name__ == "__main__": main()
+if __name__ == "__main__":
+    main()
