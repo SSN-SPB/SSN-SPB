@@ -77,30 +77,29 @@ from list below or select z to quit
 
 
 def main():
-    # print("Open file with English words")
+    # open file with pairs of words
     checked_file = open("words.txt", encoding='utf-8', mode='r')
     # create list of lines from file
     lines = checked_file.readlines()
-    # closes file and clean the buffer
+    # close file and clean the buffer
     checked_file.close()
-    # Create list word_pairs
+    # create list word_pairs
     # like [['english1', 'russian1'], ['english2', 'russian2']]
     for x in lines:
         # print(x.split(':'))
         word_pairs.append(x.split(':'))
-    # print(word_pairs)
-    # Create dictionary e2r
+    # Create dictionary: language1 to language 2
     e2r = dict(word_pairs)
+    # Create dictionary: language2 to language 1
     for key, value in e2r.items():
-        # print('English: {}, is Russian: {}'.format(key, value))
         r2e[value] = key
         english_words.append(key)
         russian_words.append(value)
     ans = True
     while ans:
         print("""
-        1.Check English-Russian translation
-        2.Check Russian-English translation
+        1.Check Language1 - Language2 translation
+        2.Check Language2 - Language1 translation
         3.Exit/Quit
         """)
         ans = input('Input Your choice here: ')
@@ -112,7 +111,7 @@ def main():
             print("\n Goodbye")
             ans = None
         else:
-            print("\n Not Valid Choice Try again")
+            print("\n Not Valid Choice. Try again please.")
     exit()
 
 
