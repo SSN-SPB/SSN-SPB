@@ -15,7 +15,7 @@ CHANGED = 'The two previous random values are not suggested to check'
 def input_validating(translation_words):
     while True:
         try:
-            row_input = input('Input Your selection here: ')
+            row_input = input('Input Your selection here, please: ')
             if row_input == 'z':
                 return row_input
             selected_number = int(row_input)
