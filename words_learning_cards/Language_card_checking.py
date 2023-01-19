@@ -24,7 +24,7 @@ def input_validating(translation_words):
             print('''
             It is not correct number.'
             Reenter please
-            or type z for quit.
+            or type z for quit...
             ''')
         else:
             break
